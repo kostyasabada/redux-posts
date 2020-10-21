@@ -6,10 +6,17 @@ import Post from './Post';
 export default function FetchedPosts() {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.fetchedPosts);
-  console.log(posts[0]);
+  const loading = useSelector(state => state.app.loading)
+  console.log(posts.length);
+
   return (
     <>
-      {(!posts.length) &&
+      {loading && (
+        <div class="spinner-border text-warning" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      )}
+      {(!posts.length && !loading) &&
         (<button
           className="btn btn-primary"
           onClick={() => dispatch(fetchPosts())}
