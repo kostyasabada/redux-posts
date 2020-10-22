@@ -1,27 +1,57 @@
 import React from 'react';
-import PostForm from './components/PostForm';
-import Posts from './components/Posts';
-import FetchedPosts from './components/FetchedPosts';
+import { NavLink, Route, Switch } from 'react-router-dom';
+import { Posts } from './components/Posts';
+import { FetchedPosts } from './components/FetchedPosts';
 
 function App() {
   return (
-    <div className="container pt-3">
-      <div className="row">
-        <div className="col">
-          <PostForm />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col">
-          <h2>Posts</h2>
+    <>
+      <ul className="nav">
+        <li className="nav-item">
+          <NavLink
+            className="nav-link"
+            activeClassName="nav-link active"
+            to=""
+            exact
+          >
+            Home
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink
+            className="nav-link"
+            activeClassName="nav-link active"
+            to="/posts"
+            exact
+          >
+            Posts
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink
+            className="nav-link"
+            activeClassName="active"
+            to="/fetchedposts"
+            exact
+          >
+            Fetched Posts
+          </NavLink>
+        </li>
+      </ul>
+
+      <Switch>
+        <Route
+          path="/posts"
+        >
           <Posts />
-        </div>
-        <div className="col">
-        <h2>FetchedPosts</h2>
+        </Route>
+        <Route
+          path="/fetchedposts"
+        >
           <FetchedPosts />
-        </div>
-      </div>
-    </div>
+        </Route>
+      </Switch>
+    </>
   );
 }
 

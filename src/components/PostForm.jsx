@@ -2,30 +2,25 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createPost } from '../redux/actions';
 
-export default function PostForm() {
+export const PostForm = () => {
   const [title, setTitle] = useState('');
   const dispatch = useDispatch();
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    if (!title.trim()){
+    if (!title.trim()) {
       return;
     }
     const newPost = {
       title,
       id: Date.now().toString(),
-    }
+    };
 
     dispatch(createPost(newPost));
 
-    setTitle('')
-    console.log(newPost);
-  }
-
-  // const changeInputHandler = (event) => {
-  //   setState(event.target.value)
-  // }
+    setTitle('');
+  };
 
   return (
     <form
@@ -39,11 +34,16 @@ export default function PostForm() {
           id="title"
           value={title}
           onChange={(event) => {
-              setTitle(event.target.value)
-            }}
+            setTitle(event.target.value);
+          }}
         />
       </div>
-      <button className="btn btn-success" type="submit">Create</button>
+      <button
+        className="btn btn-success"
+        type="submit"
+      >
+        Create
+      </button>
     </form>
   );
 };
